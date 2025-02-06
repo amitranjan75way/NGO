@@ -41,9 +41,9 @@ const AddFundingPlan: React.FC = () => {
       reset();
     } catch (err) {
       console.log(err);
-      if((err as any).data.error_code === 403) {
+      if ((err as any).data.error_code === 403) {
         toast.error("Unauthorised access");
-      }else {
+      } else {
         toast.error('Failed to add funding plan');
       }
     }

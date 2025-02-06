@@ -9,7 +9,6 @@ import ButtonLoader from '../../components/buttonLoader';
 
 
 
-
 type PaymentMethodType = 'CARD' | 'BANK_ACCOUNT';
 
 interface CardDetails {

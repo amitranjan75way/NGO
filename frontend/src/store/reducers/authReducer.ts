@@ -45,7 +45,7 @@ export const authSlice = createSlice({
     },
     login: (
       state,
-      action: PayloadAction<{name: string, email: string, role: string, accessToken: string; refreshToken: string }>
+      action: PayloadAction<{ name: string, email: string, role: string, accessToken: string; refreshToken: string }>
     ) => {
       state.name = action.payload.name;
       state.email = action.payload.email;

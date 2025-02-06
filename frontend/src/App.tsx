@@ -14,6 +14,10 @@ const Profile = React.lazy(() => import('./pages/profile'));
 const ForgotPassword = React.lazy(() => import('./pages/forgotPassword'));
 const ResetPassword = React.lazy(() => import('./pages/resetPassword'));
 const NotFound = React.lazy(() => import('./pages/notfound'));
+const PlanSubscribe = React.lazy(() => import('./pages/planSubscribe'));
+const AllPaymentMethod = React.lazy(() => import('./pages/allPaymentMethod'));
+const AddPaymentMethod = React.lazy(() => import('./pages/addPaymentMethod'));
+const AddFundingPlan = React.lazy(() => import('./pages/addFundingPlan'));
 
 // importing components
 import PublicRoute from "./components/auth/PublicRoutes";
@@ -28,27 +32,20 @@ import ProfileSkeleton from "./pages/profile/ProfileSkeleton";
 import SignupFormSkeleton from "./pages/register/RegisterFormSkeleton";
 import ResetPasswordSkeleton from "./pages/resetPassword/ResetPasswordSkeleton";
 import UpdatePasswordSkeleton from "./pages/updatePassword/UpdatePasswordSkeleton";
-import AddFundingPlan from "./pages/addFundingPlan";
-import AddPaymentMethod from "./pages/addPaymentMethod";
-import AllPaymentMethod from "./pages/allPaymentMethod";
-import PlanSubscribe from "./pages/planSubscribe";
-
+import SkeletonPlanSubscribe from "./pages/planSubscribe/SkeletonPlanSubscribe";
+import AddFundingPlanSkeleton from "./pages/addFundingPlan/AddFundingPlanSkeleton";
+import AddPaymentMethodSkeleton from "./pages/addPaymentMethod/AddPaymentMethodSkeleton";
+import SkeletonAllPaymentMethod from "./pages/allPaymentMethod/SkeletonAllPaymentMethod";
 
 
 function App() {
-
   const authData = useAppSelector((store) => store.auth);
-
-  // useState
   const [isAuthenticated, setIsAuthenticated] = useState(false);
-
-  // useEffect
   useEffect(() => {
     setIsAuthenticated(authData.isAuthenticated || false);
   }, [authData]);
 
   return (
-
     <Routes>
       <Route element={<Basic />}>
         {/* Home page ... */}
@@ -77,8 +74,6 @@ function App() {
               <ResetPassword />
             </Suspense>
           } />
-
-
         </Route>
 
 
@@ -89,9 +84,12 @@ function App() {
               <UpdatePassword />
             </Suspense>
           } />
-          <Route path="/subscribe"  element={<PlanSubscribe/>}/>
+          <Route path="/subscribe" element={
+            <Suspense fallback={<SkeletonPlanSubscribe />}>
+              <PlanSubscribe />
+            </Suspense>
+          } />
         </Route>
-
       </Route>
 
       <Route element={<PrivateRoute isAuthenticated={isAuthenticated} />}>
@@ -101,9 +99,21 @@ function App() {
               <Profile />
             </Suspense>
           } />
-          <Route path="add-plan" element={<AddFundingPlan />} />
-          <Route path="add-payment-method" element={<AddPaymentMethod/>} />
-          <Route path="payment-methods" element={<AllPaymentMethod/>} />
+          <Route path="add-plan" element={
+            <Suspense fallback={<AddFundingPlanSkeleton />}>
+              <AddFundingPlan />
+            </Suspense>
+          } />
+          <Route path="add-payment-method" element={
+            <Suspense fallback={<AddPaymentMethodSkeleton />}>
+              <AddPaymentMethod />
+            </Suspense>
+          } />
+          <Route path="payment-methods" element={
+            <Suspense fallback={<SkeletonAllPaymentMethod />}>
+              <AllPaymentMethod />
+            </Suspense>
+          } />
           <Route path="settings" element={<h1>This is setting</h1>} />
         </Route>
       </Route>
@@ -114,10 +124,7 @@ function App() {
           <NotFound />
         </Suspense>
       } />
-
-      
     </Routes>
-
   );
 }
 

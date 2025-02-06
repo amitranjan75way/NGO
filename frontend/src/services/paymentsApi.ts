@@ -34,19 +34,19 @@ export const paymentApi = createApi({
     payAndSubsribePlan: builder.mutation({
       query: (data) => ({
         url: `/subscription/${data.fundingPlanId}/${data.paymentMethodId}`,
-        method: 'POST', 
-        body: data, 
+        method: 'POST',
+        body: data,
         credentials: 'include',
       }),
     })
-    
+
 
 
   }),
 });
 
-export const { 
-  useAddPaymentMethosMutation, 
+export const {
+  useAddPaymentMethosMutation,
   useGetPaymentMethodsQuery,
   useDeletePaymentMethodMutation,
   usePayAndSubsribePlanMutation

@@ -2,7 +2,7 @@ import { createApi, fetchBaseQuery } from '@reduxjs/toolkit/query/react';
 
 export const authApi = createApi({
   reducerPath: 'api',
-  baseQuery: fetchBaseQuery({ 
+  baseQuery: fetchBaseQuery({
     baseUrl: 'http://localhost:4000/api',
     credentials: 'include',
   }),
@@ -28,7 +28,7 @@ export const authApi = createApi({
 
     // forgot password mutation
     forgotPassword: builder.mutation({
-      query: (data)=> ({
+      query: (data) => ({
         url: '/users/send-password-reset-link',
         method: 'POST',
         body: data,
@@ -40,7 +40,7 @@ export const authApi = createApi({
       query: (data) => ({
         url: `/users/reset-password/${data.token}`,
         method: 'POST',
-        body: {newPassword: data.newPassword},
+        body: { newPassword: data.newPassword },
       }),
     })
 

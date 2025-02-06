@@ -26,7 +26,7 @@ export const userApi = createApi({
   }),
 });
 
-export const { 
-  useUpdatePasswordMutation, 
-  useLogoutUserMutation 
+export const {
+  useUpdatePasswordMutation,
+  useLogoutUserMutation
 } = userApi;

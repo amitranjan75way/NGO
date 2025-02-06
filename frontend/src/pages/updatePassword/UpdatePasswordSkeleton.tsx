@@ -13,7 +13,7 @@ const UpdatePasswordSkeleton: React.FC = () => {
       >
         {/* Header Skeleton */}
         <div className={style.updatePasswordSkeletonHeader} />
-        
+
         {/* Old Password Input Skeleton */}
         <div className={style.updatePasswordSkeletonInputGroup}>
           <div className={style.updatePasswordSkeletonSkeletonInput} />

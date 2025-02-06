@@ -120,3 +120,77 @@
   font-size: 14px;
   border-radius: 8px;
 }
+
+.skeletonPlanSubscribeContainer {
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+  padding: 20px;
+}
+
+.skeletonLeftSide,
+.skeletonRightSide {
+  width: 100%;
+  max-width: 600px;
+}
+
+.skeletonHeader {
+  height: 24px;
+  width: 60%;
+  background-color: var(--skeleton-bg-light);
+  border-radius: 5px;
+  margin-bottom: 20px;
+  animation: skeleton-loading 1.5s infinite ease-in-out;
+}
+
+.skeletonPlanDetails {
+  background-color: var(--skeleton-bg-light);
+  padding: 20px;
+  border-radius: 8px;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+  animation: skeleton-loading 1.5s infinite ease-in-out;
+}
+
+.skeletonLine {
+  height: 15px;
+  width: 80%;
+  background-color: var(--skeleton-bg-dark);
+  border-radius: 5px;
+}
+
+.skeletonPaymentList {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+
+.skeletonPaymentMethod {
+  height: 50px;
+  background-color: var(--skeleton-bg-light);
+  border-radius: 8px;
+  animation: skeleton-loading 1.5s infinite ease-in-out;
+}
+
+.skeletonActions {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin-top: 20px;
+}
+
+.skeletonButton {
+  height: 40px;
+  width: 200px;
+  background-color: var(--skeleton-bg-dark);
+  border-radius: 8px;
+  animation: skeleton-loading 1.5s infinite ease-in-out;
+}
+
+@keyframes skeleton-loading {
+  0% { opacity: 0.6; }
+  50% { opacity: 1; }
+  100% { opacity: 0.6; }
+}

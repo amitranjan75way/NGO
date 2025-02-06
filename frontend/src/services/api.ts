@@ -65,14 +65,14 @@ export const baseQueryWithReauth: BaseQueryFn<FetchArgs, unknown, FetchBaseQuery
       );
 
       if ((refreshResult.data as RefreshTokenResponse)) {
-       
+
         api.dispatch(
           setTokens({
             accessToken: (refreshResult.data as RefreshTokenResponse).data.accessToken,
             refreshToken: (refreshResult.data as RefreshTokenResponse).data.refreshToken,
           })
         );
-        
+
         result = await baseQuery(args, api, extraOptions);
       } else {
         // Refresh token failed, log the user out
@@ -81,7 +81,7 @@ export const baseQueryWithReauth: BaseQueryFn<FetchArgs, unknown, FetchBaseQuery
       }
     } else {
       // No refresh token available, log the user out
-     
+
       api.dispatch(resetTokens());
       api.dispatch(logout());
     }

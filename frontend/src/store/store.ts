@@ -2,7 +2,7 @@ import { configureStore } from "@reduxjs/toolkit";
 import { useDispatch, useSelector } from "react-redux";
 import authReducer from "./reducers/authReducer";
 import { authApi } from "../services/authApi";
-import { userApi } from "../services/userApi"; 
+import { userApi } from "../services/userApi";
 import { fundingApi } from '../services/fundingApi';
 import { paymentApi } from "../services/paymentsApi";
 
