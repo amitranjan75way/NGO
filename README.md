@@ -37,7 +37,7 @@ Built using the MERN stack (MongoDB, Express.js, React.js, Node.js) with TypeScr
 ## **Installation**
 ### 1. Clone the repository:
 ```bash
-git clone https://github.com/your-username/hopefund.git
+git clone https://github.com/amitranjan75way/NGO
 ```
 
 ### 2. Install dependencies:
@@ -48,7 +48,7 @@ npm install
 ```
 ```bash
 cd frontend
-npm install
+npm install --legacy-peer-deps
 ```
 
 ### 3. Set up environment variables:
@@ -56,33 +56,33 @@ Create a `.env` file in both the frontend and backend directories with appropria
 
 **Backend .env example:**
 ```bash
-PORT=5000
+PORT=4000
 MONGO_URI=your_mongo_connection_string
 JWT_SECRET=your_jwt_secret
 ```
 
 **Frontend .env example:**
 ```bash
-REACT_APP_API_URL=http://localhost:5000/api
+REACT_APP_API_URL=http://localhost:5173/
 ```
 
 ### 4. Start the project:
 For the backend:
 ```bash
 cd backend
-npm run dev
+npm run local
 ```
 
 For the frontend:
 ```bash
 cd frontend
-npm start
+npm run dev
 ```
 
 ### 5. Access the application:
 Once both frontend and backend are running, open the browser and go to:
 ```
-http://localhost:3000
+http://localhost:5173
 ```
 
 ## **Usage**
