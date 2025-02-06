@@ -1,735 +1,155 @@
-# 🍴 Food Delivery Backend Application
-
-This backend application is built to streamline interactions between **Customers**, **Restaurants**, and **Delivery Staff**, ensuring efficient order management, real-time status updates, and seamless communication via email notifications. 
-
-The project demonstrates advanced backend development skills in the JavaScript environment, with robust functionality and a clear structure.
-
-## 🌟 Features
-### User Roles
-- **Customer**: Browse menus, place orders, and track updates.
-- **Restaurant**: Manage menu items, handle orders (accept/reject/prepare/dispatch).
-- **Delivery Staff**: View and update delivery statuses.
-
-### Key Functionalities
-#### **Customer Features**
-- View a list of restaurants.
-- Browse restaurant menus and add items to the cart.
-- Place orders and receive real-time email notifications.
-- Track order status updates.
-
-#### **Restaurant Features**
-- Add and manage menu items.
-- Receive order notifications via email.
-- Handle orders with the following actions:
-  - **Accept/Reject**: Decide whether to process the order.
-  - **Prepare**: Update order status to "Prepared."
-  - **Dispatch**: Mark the order as dispatched.
-
-#### **Order Management Workflow**
-1. Order Placement (Customer).
-2. Order Notification (Email to Restaurant).
-3. Order Status Updates:
-   - Accepted → Prepared → Dispatched → Delivered.
 
 
-## 🔧 Built With
-- **Node.js**: Backend runtime environment.
-- **Express.js**: Framework for building REST APIs.
-- **MongoDB**: Database for storing user, menu, and order data.
-- **Nodemailer**: Library for sending email notifications.
+# **HopeFund Backend (NGO Crowdfunding Platform)**
 
+## **Overview**
+HopeFund is a non-profit organization crowdfunding platform that connects donors with causes through a seamless donation system. The backend is built using **Node.js**, **Express.js**, and **MongoDB** with **JWT-based authentication**. The system allows users to donate to an NGO, subscribe to funding plans, manage donations, and track funding goals.
 
+## **Tech Stack**
+- **Node.js**: JavaScript runtime built on Chrome's V8 JavaScript engine.
+- **Express.js**: A web framework for Node.js that simplifies building APIs and web applications.
+- **MongoDB**: A NoSQL database for storing user, payment, and funding data.
+- **JWT (JSON Web Tokens)**: For secure and stateless authentication.
+- **Passport.js**: For handling user authentication strategies (Local and JWT).
+- **Bcrypt.js**: For hashing passwords and securely storing them.
+- **Swagger UI Express**: For API documentation and testing.
+- **Nodemailer**: For sending emails, such as password reset emails.
+- **Dotenv**: For managing environment variables.
 
-## How to Run the Project
+## **Environment Variables**
+Ensure you have the following environment variables set in your `.env` file for the application to function correctly:
 
-Follow these steps to set up and run the project locally:
+```env
+PORT=4000
+JWT_SECRET="AMITRANJAN"
+MONGODB_URI="mongodb+srv://iamakrdev:109L6Wh7u8cUFeaG@cluster0.wmup7.mongodb.net/ngo?retryWrites=true&w=majority&appName=Cluster0"
+BASE_URL="http://localhost:5173"
 
-1. Clone the repository:
-   ```bash
-    git clone https://github.com/amitranjan75way/food-delivery-app
-2. go to project directory
-   ```bash
-    cd food-delivery-backend
-3. Install dependencies:
-   ```bash
-    npm install
-   ```
-4. run file
-   ```bash
-    npm run local
-   ```
-## ER Diagram 
-![ER-Diagram](https://github.com/user-attachments/assets/eaa57399-04f4-412f-b7fc-57997e43ea60)
+MAIL_USER=""
+MAIL_PASS=""
 
+NODE_ENV="development"
 
-## Project Structure
-- Authentication: Secure login and sign-up mechanisms.
-- Email Notifications: Automatic emails for customers and restaurants after order placement.
-- Order Management: Real-time order placement and status updates.
-- Menu Management: Restaurants can manage their menu listings.
-  ![diagram-export-18-01-2025-16_12_10](https://github.com/user-attachments/assets/989cc7a2-72c2-4fa6-a7c3-8953f6fd2998)
-
-## API Documentation -
-
-# User Management API
-
-This API provides functionalities to manage users in a system that supports different roles like Customer, Restaurant, and Delivery Staff. It allows users to register, login, and logout.
-
-## API Endpoints
-
-### 1. **User Registration**
-
-**Endpoint:** `/users/register`
-
-**Method:** `POST`
-
-**Description:** Register a new user. This can be a Customer, Restaurant, or Delivery Staff.
-
-#### Request Body:
-```json
-{
-  "name": "Jane Doe",
-  "email": "janedoe@example.com",
-  "password": "mypassword",
-  "role": "CUSTOMER"
-}
+ACCESS_TOKEN_SECRET="amitranjanaccesstokensecret"
+REFRESH_TOKEN_SECRET="amitranjanrefreshtokensecret"
+ACCESS_TOKEN_EXPIRY="15min"
+REFRESH_TOKEN_EXPIRY="7d"
 ```
 
-- **name** (string): The user's name.
-- **email** (string): The user's email address.
-- **password** (string): The user's password.
-- **role** (string): The role of the user (either `CUSTOMER`, `RESTAURANT`, or `DELIVERY`).
+### **Environment Variables Breakdown:**
+- **PORT**: The port on which the backend server will run (default `4000`).
+- **JWT_SECRET**: Secret key used to sign JWT tokens.
+- **MONGODB_URI**: MongoDB connection URI for accessing the database.
+- **BASE_URL**: The base URL where the frontend is hosted (used for sending links in emails).
+- **MAIL_USER**: Email address for sending emails (e.g., password reset).
+- **MAIL_PASS**: Password for the email used above (ensure this is kept secure).
+- **NODE_ENV**: The current environment (`development` or `production`).
+- **ACCESS_TOKEN_SECRET**: Secret key for signing access tokens.
+- **REFRESH_TOKEN_SECRET**: Secret key for signing refresh tokens.
+- **ACCESS_TOKEN_EXPIRY**: Expiry time for access tokens.
+- **REFRESH_TOKEN_EXPIRY**: Expiry time for refresh tokens.
 
-#### Responses:
-- **200 OK**: User registered successfully.
-  ```json
-  {
-    "success": true,
-    "data": {
-      "id": "63f21c84e7a51093c507d202",
-      "name": "Jane Doe",
-      "email": "janedoe@example.com",
-      "role": "USER"
-    },
-    "message": "User registered successfully"
-  }
-  ```
-- **409 Conflict**: User already exists.
-  ```json
-  {
-    "success": false,
-    "error_code": 409,
-    "message": "User already exists",
-    "data": {}
-  }
-  ```
+## **Features**
+### **Core Features:**
+- **User Authentication**: JWT-based authentication system for secure login and registration.
+- **Password Reset**: Users can reset their passwords via email.
+- **Donation & Subscription**: Donors can select from funding plans and subscribe for recurring donations.
+- **API Documentation**: Automatic API documentation using Swagger UI for easy testing.
+- **Rate Limiting**: To prevent abuse of the API, rate limits are applied to specific routes.
+- **Email Notification**: Uses Nodemailer to send notifications such as password reset links.
 
-### 2. **User Login**
+### **Admin Features:**
+- **Manage Plans**: Admin can add, update, and delete funding plans.
+- **Track Donations**: Admin can view total funds raised and track ongoing donations.
 
-**Endpoint:** `/users/login`
+## **Installation & Setup**
 
-**Method:** `POST`
+### 1. **Clone the repository:**
 
-**Description:** Login for Customer, Restaurant, or Delivery Staff.
-
-#### Request Body:
-```json
-{
-  "email": "janedoe@example.com",
-  "password": "mypassword"
-}
+```bash
+git clone https://github.com/amitranjan75way/NGO/tree/main/backend
 ```
 
-- **email** (string): The user's email address.
-- **password** (string): The user's password.
+### 2. **Install dependencies:**
 
-#### Responses:
-- **200 OK**: User logged in successfully.
-  ```json
-  {
-    "success": true,
-    "data": {
-      "user": {
-        "id": "63f21c84e7a51093c507d202",
-        "name": "Jane Doe",
-        "email": "janedoe@example.com",
-        "role": "USER"
-      },
-      "accessToken": "jwt-token"
-    },
-    "message": "User logged in successfully"
-  }
-  ```
-- **401 Unauthorized**: Invalid credentials.
-  ```json
-  {
-    "success": false,
-    "error_code": 401,
-    "message": "Invalid credentials",
-    "data": {}
-  }
-  ```
+Navigate to the backend folder and install the dependencies:
 
-### 3. **User Logout**
-
-**Endpoint:** `/users/logout`
-
-**Method:** `POST`
-
-**Description:** Logout the currently logged-in user.
-
-#### Responses:
-- **200 OK**: User logged out successfully.
-  ```json
-  {
-    "success": true,
-    "data": {},
-    "message": "User logged out successfully"
-  }
-  ```
-
-## Components / Schema
-
-### Register User Schema
-The `RegisterUser` schema is used for the registration endpoint. It expects the following fields:
-- **name** (string)
-- **email** (string)
-- **password** (string)
-- **role** (string)
-
-### Login User Schema
-The `LoginUser` schema is used for the login endpoint. It expects the following fields:
-- **email** (string)
-- **password** (string)
-
----
-
-### Notes
-- Ensure the email used during registration is unique.
-- Roles available are `CUSTOMER`, `RESTAURANT`, and `DELIVERY`. 
-- JWT tokens are used for user authentication during login.
-
-Here’s the README template for the second API:
-
----
-
-# Customer Management API
-
-This API provides functionalities for customers to interact with restaurants, add items to their cart, view restaurant menus, and place orders.
-
-## API Endpoints
-
-### 1. **Add or Remove Item to/from Cart**
-
-**Endpoint:** `/customer/addItemToCart/{restaurantId}/{itemId}`
-
-**Method:** `POST`
-
-**Description:** Add or remove an item to/from the customer's cart.
-
-#### Path Parameters:
-- **restaurantId** (string): The ID of the restaurant.
-- **itemId** (string): The ID of the menu item.
-
-#### Responses:
-- **200 OK**: Item added or removed successfully.
-  ```json
-  {
-    "success": true,
-    "data": {
-      "cartId": "63f21c84e7a51093c507d202",
-      "items": [
-        {
-          "id": "63f21c84e7a51093c507d203",
-          "name": "Pizza",
-          "price": 10
-        }
-      ],
-      "totalAmount": 10,
-      "restaurantId": "63f21c84e7a51093c507d204"
-    },
-    "message": "Item added to cart successfully"
-  }
-  ```
-- **404 Not Found**: Item or customer/cart not found.
-  ```json
-  {
-    "success": false,
-    "error_code": 404,
-    "message": "Item or customer/cart not found",
-    "data": {}
-  }
-  ```
-
-### 2. **Get List of Restaurants**
-
-**Endpoint:** `/customer/restaurantList`
-
-**Method:** `GET`
-
-**Description:** Get the list of all restaurants.
-
-#### Responses:
-- **200 OK**: List of restaurants fetched successfully.
-  ```json
-  {
-    "success": true,
-    "data": [
-      {
-        "id": "63f21c84e7a51093c507d205",
-        "name": "Italian Bistro",
-        "address": "123 Main St"
-      },
-      {
-        "id": "63f21c84e7a51093c507d206",
-        "name": "Sushi House",
-        "address": "456 Elm St"
-      }
-    ],
-    "message": "Restaurants fetched successfully"
-  }
-  ```
-
-### 3. **Get Menu Items for a Specific Restaurant**
-
-**Endpoint:** `/customer/{restaurantId}`
-
-**Method:** `GET`
-
-**Description:** Get the menu items for a specific restaurant.
-
-#### Path Parameters:
-- **restaurantId** (string): The ID of the restaurant.
-
-#### Responses:
-- **200 OK**: Menu items fetched successfully.
-  ```json
-  {
-    "success": true,
-    "data": [
-      {
-        "id": "63f21c84e7a51093c507d207",
-        "name": "Pasta",
-        "price": 12,
-        "isAvailable": true
-      },
-      {
-        "id": "63f21c84e7a51093c507d208",
-        "name": "Salad",
-        "price": 8,
-        "isAvailable": true
-      }
-    ],
-    "message": "Menu items fetched successfully"
-  }
-  ```
-- **404 Not Found**: Restaurant not found.
-  ```json
-  {
-    "success": false,
-    "error_code": 404,
-    "message": "Restaurant not found",
-    "data": {}
-  }
-  ```
-
-### 4. **Place an Order**
-
-**Endpoint:** `/customer/placeOrder`
-
-**Method:** `POST`
-
-**Description:** Place an order for the items in the user's cart. If the cart is empty, it will return an error.
-
-#### Security:
-- **BearerAuth**: User needs to be authenticated with a JWT token.
-
-#### Request Body:
-- No request body is required. Cart details are fetched from the user's session.
-
-#### Responses:
-- **200 OK**: Order placed successfully.
-  ```json
-  {
-    "order": {
-      "userId": "63f21c84e7a51093c507d202",
-      "restaurantId": "63f21c84e7a51093c507d204",
-      "items": ["63f21c84e7a51093c507d203"],
-      "totalAmount": 10,
-      "status": "placed",
-      "deliveryAddress": "123 Main St"
-    }
-  }
-  ```
-
-- **400 Bad Request**: Cart is empty, cannot place order.
-  ```json
-  {
-    "error": "Cart is empty, cannot place order"
-  }
-  ```
-
-- **404 Not Found**: User or customer details not found.
-  ```json
-  {
-    "error": "User not found"
-  }
-  ```
-
-- **401 Unauthorized**: Unauthorized access, user not found.
-  ```json
-  {
-    "error": "User not found, please login again"
-  }
-  ```
-
-## Components / Schema
-
-### Cart and Order Schema
-
-The cart and order are represented in the following structures:
-- **userId** (string): ID of the user placing the order.
-- **restaurantId** (string): ID of the restaurant receiving the order.
-- **items** (array): List of item IDs being ordered.
-- **totalAmount** (number): Total amount of the order.
-- **status** (string): The current status of the order, e.g., `placed`, `accepted`, `prepared`, `dispatched`, `delivered`.
-- **deliveryAddress** (string): Delivery address for the order.
-
----
-
-### Notes
-- Ensure that the user is logged in (authenticated) when placing an order.
-- Users can add/remove items from their cart and place an order for the items in the cart.
-- The cart details are managed based on the session of the user.
-Here’s the README template for the second API:
-
----
-
-# Customer Management API
-
-This API provides functionalities for customers to interact with restaurants, add items to their cart, view restaurant menus, and place orders.
-
-## API Endpoints
-
-### 1. **Add or Remove Item to/from Cart**
-
-**Endpoint:** `/customer/addItemToCart/{restaurantId}/{itemId}`
-
-**Method:** `POST`
-
-**Description:** Add or remove an item to/from the customer's cart.
-
-#### Path Parameters:
-- **restaurantId** (string): The ID of the restaurant.
-- **itemId** (string): The ID of the menu item.
-
-#### Responses:
-- **200 OK**: Item added or removed successfully.
-  ```json
-  {
-    "success": true,
-    "data": {
-      "cartId": "63f21c84e7a51093c507d202",
-      "items": [
-        {
-          "id": "63f21c84e7a51093c507d203",
-          "name": "Pizza",
-          "price": 10
-        }
-      ],
-      "totalAmount": 10,
-      "restaurantId": "63f21c84e7a51093c507d204"
-    },
-    "message": "Item added to cart successfully"
-  }
-  ```
-- **404 Not Found**: Item or customer/cart not found.
-  ```json
-  {
-    "success": false,
-    "error_code": 404,
-    "message": "Item or customer/cart not found",
-    "data": {}
-  }
-  ```
-
-### 2. **Get List of Restaurants**
-
-**Endpoint:** `/customer/restaurantList`
-
-**Method:** `GET`
-
-**Description:** Get the list of all restaurants.
-
-#### Responses:
-- **200 OK**: List of restaurants fetched successfully.
-  ```json
-  {
-    "success": true,
-    "data": [
-      {
-        "id": "63f21c84e7a51093c507d205",
-        "name": "Italian Bistro",
-        "address": "123 Main St"
-      },
-      {
-        "id": "63f21c84e7a51093c507d206",
-        "name": "Sushi House",
-        "address": "456 Elm St"
-      }
-    ],
-    "message": "Restaurants fetched successfully"
-  }
-  ```
-
-### 3. **Get Menu Items for a Specific Restaurant**
-
-**Endpoint:** `/customer/{restaurantId}`
-
-**Method:** `GET`
-
-**Description:** Get the menu items for a specific restaurant.
-
-#### Path Parameters:
-- **restaurantId** (string): The ID of the restaurant.
-
-#### Responses:
-- **200 OK**: Menu items fetched successfully.
-  ```json
-  {
-    "success": true,
-    "data": [
-      {
-        "id": "63f21c84e7a51093c507d207",
-        "name": "Pasta",
-        "price": 12,
-        "isAvailable": true
-      },
-      {
-        "id": "63f21c84e7a51093c507d208",
-        "name": "Salad",
-        "price": 8,
-        "isAvailable": true
-      }
-    ],
-    "message": "Menu items fetched successfully"
-  }
-  ```
-- **404 Not Found**: Restaurant not found.
-  ```json
-  {
-    "success": false,
-    "error_code": 404,
-    "message": "Restaurant not found",
-    "data": {}
-  }
-  ```
-
-### 4. **Place an Order**
-
-**Endpoint:** `/customer/placeOrder`
-
-**Method:** `POST`
-
-**Description:** Place an order for the items in the user's cart. If the cart is empty, it will return an error.
-
-#### Security:
-- **BearerAuth**: User needs to be authenticated with a JWT token.
-
-#### Request Body:
-- No request body is required. Cart details are fetched from the user's session.
-
-#### Responses:
-- **200 OK**: Order placed successfully.
-  ```json
-  {
-    "order": {
-      "userId": "63f21c84e7a51093c507d202",
-      "restaurantId": "63f21c84e7a51093c507d204",
-      "items": ["63f21c84e7a51093c507d203"],
-      "totalAmount": 10,
-      "status": "placed",
-      "deliveryAddress": "123 Main St"
-    }
-  }
-  ```
-
-- **400 Bad Request**: Cart is empty, cannot place order.
-  ```json
-  {
-    "error": "Cart is empty, cannot place order"
-  }
-  ```
-
-- **404 Not Found**: User or customer details not found.
-  ```json
-  {
-    "error": "User not found"
-  }
-  ```
-
-- **401 Unauthorized**: Unauthorized access, user not found.
-  ```json
-  {
-    "error": "User not found, please login again"
-  }
-  ```
-
-## Components / Schema
-
-### Cart and Order Schema
-
-The cart and order are represented in the following structures:
-- **userId** (string): ID of the user placing the order.
-- **restaurantId** (string): ID of the restaurant receiving the order.
-- **items** (array): List of item IDs being ordered.
-- **totalAmount** (number): Total amount of the order.
-- **status** (string): The current status of the order, e.g., `placed`, `accepted`, `prepared`, `dispatched`, `delivered`.
-- **deliveryAddress** (string): Delivery address for the order.
-
----
-
-### Notes
-- Ensure that the user is logged in (authenticated) when placing an order.
-- Users can add/remove items from their cart and place an order for the items in the cart.
-- The cart details are managed based on the session of the user.
-
-Here is a sample `README.md` file for the API specification you've shared:
-
----
-
-# Restaurant Management API
-
-This API allows restaurant owners and administrators to manage restaurants, menu items, and orders. It includes endpoints for adding menu items, viewing menus, updating order statuses, and retrieving restaurant information.
-
-## API Endpoints
-
-### 1. **Add a New Menu Item**
-**POST** `/restaurant/add-item`
-
-- **Summary**: Adds a new menu item to the restaurant.
-- **Request Body** (application/json):
-  ```json
-  {
-    "name": "Margherita Pizza",
-    "price": 12.99,
-    "description": "Classic Margherita Pizza with mozzarella cheese and tomato sauce",
-    "isAvailable": true
-  }
-  ```
-- **Response**:
-  - `200 OK`: Successfully added the menu item.
-  - `401 Unauthorized`: User not authorized or invalid.
-
-### 2. **Get All Menu Items for a Specific Restaurant**
-**GET** `/restaurant/menu/{restaurantId}`
-
-- **Summary**: Fetches all menu items for a specific restaurant.
-- **Parameters**:
-  - `restaurantId` (path parameter): The ID of the restaurant.
-- **Response**:
-  - `200 OK`: List of menu items.
-  - `404 Not Found`: Restaurant not found.
-
-### 3. **Get the List of All Restaurants**
-**GET** `/restaurant`
-
-- **Summary**: Fetches a list of all restaurants.
-- **Response**:
-  - `200 OK`: List of restaurants.
-  - `500 Internal Server Error`: An unexpected error occurred.
-
-### 4. **Update Order Status by Restaurant**
-**PUT** `/restaurant/order/{restaurantId}/{orderId}`
-
-- **Summary**: Updates the status of an order for a specific restaurant.
-- **Parameters**:
-  - `restaurantId` (path parameter): The ID of the restaurant.
-  - `orderId` (path parameter): The ID of the order.
-- **Request Body** (application/json):
-  ```json
-  {
-    "status": "accepted"
-  }
-  ```
-- **Response**:
-  - `200 OK`: Successfully updated the order status.
-  - `400 Bad Request`: Invalid parameters.
-  - `404 Not Found`: Order not found.
-  - `500 Internal Server Error`: An unexpected error occurred.
-
-## Example Responses
-
-### 1. **Successful Response for Adding a Menu Item**
-```json
-{
-  "success": true,
-  "data": {
-    "id": "63f21c84e7a51093c507d202",
-    "name": "Margherita Pizza",
-    "price": 12.99,
-    "description": "Classic Margherita Pizza with mozzarella cheese and tomato sauce",
-    "isAvailable": true
-  },
-  "message": "Item added successfully"
-}
+```bash
+cd hopefund-backend
+npm install
 ```
 
-### 2. **Successful Response for Fetching Menu Items**
-```json
-{
-  "success": true,
-  "data": [
-    {
-      "id": "63f21c84e7a51093c507d203",
-      "name": "Margherita Pizza",
-      "price": 12.99,
-      "description": "Classic Margherita Pizza with mozzarella cheese and tomato sauce",
-      "isAvailable": true
-    },
-    {
-      "id": "63f21c84e7a51093c507d204",
-      "name": "Pepperoni Pizza",
-      "price": 15.99,
-      "description": "Pepperoni Pizza with spicy salami and cheese",
-      "isAvailable": true
-    }
-  ],
-  "message": "Menu items fetched successfully"
-}
+### 3. **Set up environment variables:**
+
+Create a `.env` file in the root directory and add the environment variables as shown in the **Environment Variables** section above.
+
+### 4. **Run the application in development mode:**
+
+```bash
+npm run dev
 ```
 
-### 3. **Error Response Example (Order Not Found)**
-```json
-{
-  "success": false,
-  "error_code": 404,
-  "message": "Order not found",
-  "data": {}
-}
+The backend will run on `http://localhost:4000`.
+
+### 5. **Build for production:**
+
+```bash
+npm run build
+npm run prod
 ```
 
-## Authentication
+This will build the project and start it in production mode.
 
-Some endpoints (e.g., adding menu items) require authentication. Make sure to include a valid authorization token in the headers for requests requiring authentication.
+## **API Documentation**
 
-## Error Codes
+You can view the API documentation via **Swagger UI** at the following URL once the server is running:
 
-- **401 Unauthorized**: User is not authorized, please log in again.
-- **400 Bad Request**: Invalid request parameters.
-- **404 Not Found**: Requested resource not found (e.g., restaurant or order).
-- **500 Internal Server Error**: An unexpected error occurred.
+- [Swagger UI - API Docs](http://localhost:4000/api-docs)
 
-## How to Use the API
 
-1. **Set up the API server** on your local machine or in a production environment.
-2. **Use a tool like Postman or cURL** to make requests to the API.
-3. **Make sure to include authentication tokens** where required in your requests.
-4. **Refer to the documentation** for detailed endpoint information.
+## **Key Libraries & Their Usage**
+
+### 1. **Express.js**:
+- **Purpose**: Create the server and handle routing.
+- **Use case**: Serve REST API endpoints for user authentication, donations, and plans.
+
+### 2. **MongoDB & Mongoose**:
+- **Purpose**: Store user and donation data.
+- **Use case**: Models for users, donations, and funding plans are defined using Mongoose.
+
+### 3. **JWT & Passport.js**:
+- **Purpose**: Secure authentication using JSON Web Tokens.
+- **Use case**: Implement login and token-based authentication with Passport.js and JWT.
+
+### 4. **Nodemailer**:
+- **Purpose**: Send password reset emails.
+- **Use case**: Used for sending email notifications, such as password reset links.
+
+### 5. **Dotenv**:
+- **Purpose**: Load environment variables.
+- **Use case**: Securely manage environment variables for connecting to databases, email services, and defining secrets.
+
+### 6. **Rate Limiting**:
+- **Purpose**: Prevent brute force attacks and API abuse.
+- **Use case**: Limit the number of requests to specific routes within a time period.
+
+### 7. **Swagger UI**:
+- **Purpose**: Automatically generate API documentation.
+- **Use case**: Provide interactive API documentation to test and view all available API routes.
+
+## **Testing**
+
+To run tests for your application, you can use the following:
+
+```bash
+npm run lint    # To run ESLint and check for code issues
+npm run format  # To run Prettier and format the code
+```
+
+## **License**
+
+This project is licensed under the MIT License. See the [LICENSE](LICENSE) file for more details.
 
 ---
 
-This `README.md` provides a clear overview of the API's functionality, including request/response examples, error codes, and usage instructions.
-
-
-   
+This README can be updated with any changes to the backend's features, API, or environment variables as needed.
