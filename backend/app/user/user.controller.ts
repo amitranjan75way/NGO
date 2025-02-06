@@ -20,9 +20,14 @@ const BASE_URL: string = process.env.BASE_URL as string;
 
 /**
  * Registers a new user.
+ *
+ * @async
+ * @function registerUser
  * @param {Request} req - The request object containing user data in the body.
  * @param {Response} res - The response object used to send the result.
- * @throws {HttpError} If the user already exists or refresh token update fails.
+ * @throws {HttpError} 409 - If the user already exists.
+ * @throws {HttpError} 500 - If refresh token update fails.
+ * @returns {Promise<void>} - Resolves when the user is registered successfully.
  */
 export const registerUser = asyncHandler(
   async (req: Request, res: Response) => {
@@ -80,9 +85,14 @@ export const registerUser = asyncHandler(
 
 /**
  * Logs in a user.
+ *
+ * @async
+ * @function loginUser
  * @param {Request} req - The request object containing email and password in the body.
  * @param {Response} res - The response object used to send the result.
- * @throws {HttpError} If the user is not found or the password is incorrect.
+ * @throws {HttpError} 404 - If the user is not found.
+ * @throws {HttpError} 401 - If the password is incorrect.
+ * @returns {Promise<void>} - Resolves when the user is logged in successfully.
  */
 export const loginUser = asyncHandler(async (req: Request, res: Response) => {
   const data = req.body;
@@ -135,9 +145,13 @@ export const loginUser = asyncHandler(async (req: Request, res: Response) => {
 
 /**
  * Logs out a user by clearing cookies and removing the refresh token.
+ *
+ * @async
+ * @function logout
  * @param {Request} req - The request object.
  * @param {Response} res - The response object used to send the result.
- * @throws {HttpError} If the user is not found.
+ * @throws {HttpError} 401 - If the user is not found.
+ * @returns {Promise<void>} - Resolves when the user is logged out successfully.
  */
 export const logout = asyncHandler(async (req: Request, res: Response) => {
   const user = req.user;
@@ -152,9 +166,14 @@ export const logout = asyncHandler(async (req: Request, res: Response) => {
 
 /**
  * Updates the access token using the refresh token.
+ *
+ * @async
+ * @function updateAccessToken
  * @param {Request} req - The request object containing the refresh token in cookies or headers.
  * @param {Response} res - The response object used to send the result.
- * @throws {HttpError} If the refresh token is not found, invalid, or the user is not found.
+ * @throws {HttpError} 401 - If the refresh token is not found or invalid.
+ * @throws {HttpError} 404 - If the user is not found.
+ * @returns {Promise<void>} - Resolves when the access token is updated successfully.
  */
 export const updateAccessToken = asyncHandler(
   async (req: Request, res: Response) => {

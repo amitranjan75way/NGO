@@ -17,7 +17,7 @@ type FormData = {
   name: string;
   email: string;
   password: string;
-  role: 'USER' | 'ADMIN';
+  role: 'DONAR' | 'ADMIN';
 };
 
 // Validation schema using yup
@@ -30,7 +30,7 @@ const schema = yup.object({
     .min(6, 'Password must be at least 6 characters'),
   role: yup
     .string()
-    .oneOf(['USER', 'ADMIN'], 'Invalid role')
+    .oneOf(['DONAR', 'ADMIN'], 'Invalid role')
     .required('Role is required'),
 });
 
@@ -40,7 +40,7 @@ const SignupForm: React.FC = () => {
   const dispatch = useAppDispatch();
   const { register, handleSubmit, formState: { errors }, reset } = useForm<FormData>({
     resolver: yupResolver(schema),
-    defaultValues: { role: 'USER' },
+    defaultValues: { role: 'DONAR' },
   });
 
   const [showPassword, setShowPassword] = useState(false); // For toggling password visibility
@@ -79,7 +79,7 @@ const SignupForm: React.FC = () => {
         transition={{ duration: 0.6, ease: 'easeOut' }}
       >
         <h1 className={style.header}>
-          Welcome to <span className={style.brandName}>My App</span>
+          Welcome to <span className={style.brandName}>HopeFund</span>
         </h1>
         <p className={style.subHeader}>Register to get started!</p>
 
@@ -99,7 +99,7 @@ const SignupForm: React.FC = () => {
           <div className={style.role}>
             <label className={style.title} htmlFor="role">Select Role</label>
             <select id="role" {...register('role')} className={style.dropdown}>
-              <option value="USER">User</option>
+              <option value="DONAR">Donar</option>
               <option value="ADMIN">Admin</option>
             </select>
             {errors.role && <p className={style.error}>{errors.role.message}</p>}

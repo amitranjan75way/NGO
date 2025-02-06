@@ -1,0 +1,151 @@
+
+.donationplandiv {
+  padding-top: 4rem;
+  text-align: center;
+}
+.donationplandiv h1 {
+  color: var(--text-color);
+  font-size: 3rem;
+}
+
+/* Global CSS for cards, buttons, and text */
+.fundingPlansContainer {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 20px;
+  justify-content: space-between;
+  max-width: 1120px;
+  margin: 0 auto;
+  padding: 6rem 0;
+  background-color: var(--background-color);
+}
+
+/* Individual Plan Card Design */
+.planCard {
+  border: 1px solid var(--border-color);
+  padding: 20px;
+  border-radius: 8px;
+  width: 100%;
+  max-width: 300px; /* Limit the card width */
+  background-color: var(--card-background, var(--background-color));
+  box-shadow: var(--card-shadow, 0 2px 8px rgba(0, 0, 0, 0.1));
+  transition: transform 0.2s ease, box-shadow 0.2s ease;
+}
+
+.planCard:hover {
+  transform: translateY(-5px);
+  box-shadow: var(--card-shadow-hover, 0 5px 15px rgba(0, 0, 0, 0.15));
+}
+
+/* Plan Title */
+.planTitle {
+  font-size: 18px;
+  font-weight: bold;
+  color: var(--text-color);
+}
+
+/* Amount and Collected Amount */
+.planAmount,
+.planCollectedAmount {
+  font-size: 16px;
+  color: var(--secondary-text-color);
+  margin: 10px 0;
+}
+
+/* Plan Status */
+.planStatus {
+  margin-top: 10px;
+  padding: 5px;
+  border-radius: 4px;
+  background-color: var(--status-bg, #f2f2f2);
+  text-align: center;
+  font-size: 14px;
+  color: var(--status-text, #333);
+}
+
+/* Subscribe Button */
+.subscribeButton {
+  width: 100%;
+  padding: 10px;
+  background-color: var(--primary-color);
+  color: var(--btn-text-color, #fff);
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+  text-align: center;
+  font-size: 16px;
+  margin-top: 15px;
+}
+
+.subscribeButton:hover {
+  background-color: var(--primary-color-hover, #0056b3);
+}
+
+/* Skeleton Loading Styles */
+.skeletonContainer {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 20px;
+  justify-content: center;
+  max-width: 1120px;
+  margin: 0 auto;
+}
+
+.skeletonCard {
+  width: 100%;
+  max-width: 300px;
+  height: 200px;
+  background-color: var(--skeleton-bg-light);
+  border-radius: 8px;
+  animation: pulse 1.5s infinite ease-in-out;
+}
+
+/* Pulse Animation for Skeleton */
+@keyframes pulse {
+  0% {
+    background-color: var(--skeleton-bg-light);
+  }
+  50% {
+    background-color: var(--skeleton-bg-dark);
+  }
+  100% {
+    background-color: var(--skeleton-bg-light);
+  }
+}
+
+/* Error Message */
+.errorMessage {
+  color: var(--error-color, red);
+  font-size: 18px;
+  text-align: center;
+  margin-top: 20px;
+}
+
+/* Dark Mode Overrides */
+[data-theme="dark"] .planCard {
+  background-color: var(--card-background);
+  border: 1px solid var(--border-color);
+}
+
+[data-theme="dark"] .planTitle {
+  color: var(--text-color);
+}
+
+[data-theme="dark"] .planAmount,
+[data-theme="dark"] .planCollectedAmount {
+  color: var(--secondary-text-color);
+}
+
+[data-theme="dark"] .planStatus {
+  background-color: var(--status-bg);
+  color: var(--text-color);
+}
+
+[data-theme="dark"] .subscribeButton {
+  background-color: var(--primary-color);
+  color: var(--btn-text-color);
+}
+
+[data-theme="dark"] .skeletonCard {
+  background-color: var(--skeleton-bg-dark);
+}

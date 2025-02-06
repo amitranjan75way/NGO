@@ -30,7 +30,7 @@ export const auth = asyncHandler(async (req: Request, res: Response, next: NextF
       });
     }
     // Check if user has a valid role
-    if (!user.role || !["USER", "ADMIN"].includes(user.role)) {
+    if (!user.role || !["DONAR", "ADMIN"].includes(user.role)) {
       throw createHttpError(403, {
         message: "Invalid or unauthorized user role",
       });
@@ -41,9 +41,9 @@ export const auth = asyncHandler(async (req: Request, res: Response, next: NextF
   }
 );
 
-export const isUser = async(req: Request, res: Response, next: NextFunction) => {
+export const isDonar = async(req: Request, res: Response, next: NextFunction) => {
   const user = req.user;
-  if (!user || user.role !== "USER") {
+  if (!user || user.role !== "DONAR") {
     next(createHttpError(403, "Only User can access this route"));
   }
   next();

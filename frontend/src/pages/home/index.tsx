@@ -1,11 +1,14 @@
 import React from 'react'
 import style from './index.module.css';
+import HeroSection from '../../components/heroSection';
+import ShowFundingPlans from '../../components/showFundingPlans';
 
 
 function Home() {
   return (
     <div className={style.maindiv}>
-      <h1>hello this is amit</h1>
+      <HeroSection/>
+      <ShowFundingPlans/>
     </div>
   )
 }

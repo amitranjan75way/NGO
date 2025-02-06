@@ -33,8 +33,8 @@ const UserSchema = new mongoose.Schema<IUser>(
     role: {
       type: String,
       required: true,
-      enum: ["USER", "ADMIN"],
-      default: "USER",
+      enum: ["DONAR", "ADMIN"],
+      default: "DONAR",
     },
     refreshToken: {
       type: String,

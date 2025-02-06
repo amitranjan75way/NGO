@@ -28,6 +28,10 @@ import ProfileSkeleton from "./pages/profile/ProfileSkeleton";
 import SignupFormSkeleton from "./pages/register/RegisterFormSkeleton";
 import ResetPasswordSkeleton from "./pages/resetPassword/ResetPasswordSkeleton";
 import UpdatePasswordSkeleton from "./pages/updatePassword/UpdatePasswordSkeleton";
+import AddFundingPlan from "./pages/addFundingPlan";
+import AddPaymentMethod from "./pages/addPaymentMethod";
+import AllPaymentMethod from "./pages/allPaymentMethod";
+import PlanSubscribe from "./pages/planSubscribe";
 
 
 
@@ -49,6 +53,7 @@ function App() {
       <Route element={<Basic />}>
         {/* Home page ... */}
         <Route path="/" element={<Home />} />
+        <Route path="/add-plan" element={<AddFundingPlan />} />
 
         {/* Public Routes */}
         <Route element={<PublicRoute isAuthenticated={isAuthenticated} />} >
@@ -72,6 +77,8 @@ function App() {
               <ResetPassword />
             </Suspense>
           } />
+
+
         </Route>
 
 
@@ -82,6 +89,7 @@ function App() {
               <UpdatePassword />
             </Suspense>
           } />
+          <Route path="/subscribe"  element={<PlanSubscribe/>}/>
         </Route>
 
       </Route>
@@ -93,6 +101,9 @@ function App() {
               <Profile />
             </Suspense>
           } />
+          <Route path="add-plan" element={<AddFundingPlan />} />
+          <Route path="add-payment-method" element={<AddPaymentMethod/>} />
+          <Route path="payment-methods" element={<AllPaymentMethod/>} />
           <Route path="settings" element={<h1>This is setting</h1>} />
         </Route>
       </Route>
@@ -103,6 +114,8 @@ function App() {
           <NotFound />
         </Suspense>
       } />
+
+      
     </Routes>
 
   );

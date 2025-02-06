@@ -66,7 +66,7 @@ const Header = () => {
         animate={{ x: 0, opacity: 1 }} 
         transition={{ duration: 0.6, ease: 'easeOut' }}
       >
-        <h1>My App</h1>
+        <h1>HopeFund</h1>
       </motion.div>
 
       {/* Right Side: Theme Toggle & Profile/Auth */}

@@ -1,0 +1,80 @@
+.addFundingPlanContainer {
+  display: flex;
+  justify-content: center;
+  align-items: start;
+  min-height: 100vh;
+  background-color: var(--background-color);
+  padding: 20px;
+}
+
+.formWrapper {
+  max-width: 450px;
+  width: 100%;
+  padding: 30px;
+  background-color: var(--card-background);
+  border-radius: 10px;
+  box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.1);
+}
+
+.header {
+  font-size: 24px;
+  font-weight: bold;
+  text-align: center;
+  color: var(--text-color);
+  margin-bottom: 20px;
+}
+
+.form {
+  display: flex;
+  flex-direction: column;
+  gap: 15px;
+}
+
+.inputGroup {
+  display: flex;
+  flex-direction: column;
+}
+
+.inputGroup input,
+.inputGroup select {
+  padding: 10px 20px;
+  border: 1px solid var(--input-border);
+  border-radius: 5px;
+  font-size: 14px;
+  background-color: var(--background-color);
+}
+
+.inputGroup label {
+  font-weight: bold;
+  color: var(--text-color);
+  margin-bottom: 5px;
+}
+
+.inputGroup input:focus,
+.inputGroup select:focus {
+  border-color: var(--primary-color);
+  outline: none;
+}
+
+.error {
+  font-size: 0.875rem;
+  color: red;
+  margin-top: 0.25rem;
+}
+
+.submitButton {
+  padding: 12px;
+  font-size: 16px;
+  font-weight: bold;
+  color: var(--white);
+  background-color: var(--primary-color);
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+  transition: all 0.3s ease;
+}
+
+.submitButton:hover {
+  background-color: var(--secondary-color);
+  transform: scale(1.02);
+}

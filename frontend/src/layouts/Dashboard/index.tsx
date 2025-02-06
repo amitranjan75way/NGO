@@ -4,7 +4,9 @@ import Sidebar from './Sidebar';
 import Header from '../../components/header';
 import style from './index.module.css';
 
+
 const Dashboard: React.FC = () => {
+  
   return (
     <div className={style.dashboard}>
       {/* Fixed Header */}
